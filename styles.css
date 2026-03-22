@@ -94,6 +94,17 @@ body {
         0 0 20px rgba(255, 160, 0, 0.6);
 }
 
+.todos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#task-list {
+    list-style: none;
+    width: 100%;
+}
+
 .quill-image {
     display: block;
     max-width: 150px;

@@ -36,7 +36,9 @@ Import pixel-art fonts and a "parchment/scroll" background.
 
 The Burning Effect: Replace the strike-through with a custom CSS animation where text glows red and dissolves.
 
-Integrate a custom "Wand" cursor that interacts with the UI.
+Integrate a custom "Quill" cursor that interacts with the UI.
+
+Add Quill movement when new tasts are added.
 
 🧭 Stage 3: The Open Road (Environment & Motion)
 The Goal: Adding atmosphere and "Game Feel."
