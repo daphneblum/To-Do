@@ -13,29 +13,38 @@
 </head>
 <body>
     <div class="container">
-        <div class="todo-app">
-            <h1>Quest Log</h1>
-            <div class="stat-container">
-                <div class="details">
-                    <h3>Keep it up!</h3>
-                    <div id="progressbar">
-                        <div id="progress"></div>
+        <div class="app-wrapper">
+
+            <!-- Title & progress sit ABOVE the scroll -->
+            <div class="above-scroll">
+                <h1>Quest Log</h1>
+                <div class="stat-container">
+                    <div class="details">
+                        <h3>Checkpoint</h3>
+                        <div id="progressbar">
+                            <div id="progress"></div>
+                        </div>
+                    </div>
+                    <div class="stats-number">
+                        <p id="numbers">0 / 0</p>
                     </div>
                 </div>
-                <div class="stats-number">
-                    <p id="number">0 / 0</p>
+                <form class="input-area">
+                    <input type="text" id="task-input" placeholder="New Quest...">
+                    <button type="submit" id="add-task-button"><i class="fa-solid fa-plus"></i></button>
+                </form>
+            </div>
+
+            <!-- Scroll only contains the task list -->
+            <div class="todo-app">
+                <div class="todos-container">
+                    <ul id="task-list"></ul>
+                    <img src="./images/quill.png" alt="Quill" class="quill-image">
                 </div>
             </div>
-            <form class="input-area">
-                <input type="text" id="task-input" placeholder="New Quest...">
-                <button type="submit" id="add-task-button"><i class="fa-solid fa-plus"></i></button>
-            </form>
-            <div class="todos-container">
-                <ul id="task-list"></ul>
-                <img src="./images/quill.png" alt="Quill" class="quill-image">
-            </div>
+
         </div>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
