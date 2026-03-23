@@ -19,48 +19,48 @@ The Goal: A functional CRUD (Create, Read, Update, Delete) application.
 
 Tasks:
 
-Build the input field for "New Quests."
+-Build the input field for "New Quests." ✅
 
-Implement the list display using JavaScript arrays.
+-Implement the list display using JavaScript arrays. ✅
 
-Add a "Strike-through" function for basic completion.
+-Add a "Strike-through" function for basic completion. ✅
 
-Screenshot Placeholder: [Initial Wireframe]
+![screenshot of progress](<images/Screenshot 2026-03-22 at 8.51.51 PM.png>)
 
 🕯️ Stage 2: The Alchemist’s Workshop (Visual Polish)
 The Goal: Moving from "Default Browser" to "Retro Fantasy."
 
 Tasks:
 
-Import pixel-art fonts and a "parchment/scroll" background.
+-Import pixel-art fonts and a "parchment/scroll" background. ✅
 
-The Burning Effect: Replace the strike-through with a custom CSS animation where text glows red and dissolves.
+-The Burning Effect: Replace the strike-through with a custom CSS animation where text glows red and dissolves.
 
-Integrate a custom "Quill" cursor that interacts with the UI.
+-Integrate a custom "Quill" cursor that interacts with the UI.
 
-Add Quill movement when new tasts are added.
+-Add Quill movement when new tasts are added.
 
 🧭 Stage 3: The Open Road (Environment & Motion)
 The Goal: Adding atmosphere and "Game Feel."
 
 Tasks:
 
-Create a first-person "Walking Path" background.
+-Create a first-person "Walking Path" background.
 
-Implement a Toggle Switch (On/Off) for background movement to allow for a "Focus Mode."
+-Implement a Toggle Switch (On/Off) for background movement to allow for a "Focus Mode."
 
-Add parallax scrolling to give the path depth.
+-Add parallax scrolling to give the path depth.
 
 🌑 Stage 4: The Eternal Cycle (Real-Time Integration)
 The Goal: Making the app feel alive and connected to the real world.
 
 Tasks:
 
-Use the JavaScript Date object to detect the user's local time.
+-Use the JavaScript Date object to detect the user's local time.
 
-Dynamic Lighting: Shift the UI from Day (Golden/Bright) to Dusk (Purple/Orange) to Night (Deep Blue/Lantern Light).
+-Dynamic Lighting: Shift the UI from Day (Golden/Bright) to Dusk (Purple/Orange) to Night (Deep Blue/Lantern Light).
 
-Add "Easter Eggs" based on the time (e.g., a small owl appearing at night).
+-Add "Easter Eggs" based on the time (e.g., a small owl appearing at night).
 
 🧪 Tech Stack
 Frontend: HTML5, CSS
