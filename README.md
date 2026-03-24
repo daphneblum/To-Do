@@ -1,74 +1,74 @@
-# To-Do
-A To-Do List
+# Quest Log
+Quest Log
 
-The base of this to-do list will be based on the tutorial by CSSnippets on YouTube:
-[https://www.youtube.com/watch?v=gRkaen6MeQc]
+A fantasy-themed productivity app that transforms your to-do list into an adventure. Instead of checking off chores, you complete quests.
 
-I will work on customizing the app to have fantasy elements.
-
-📜 Project: The Quest Log
-A productivity companion for the weary traveler.
-🧭 The Vision
-Most To-Do apps feel like chores. The Quest Log is designed to feel like an adventure. It is a functional "Study Companion" that lives in your browser.
-
-One does not simply 'finish' a task; one completes a quest.
-
-🛠️ The Roadmap (Development Stages)
-🛡️ Stage 1: The Foundations (Core Logic)
-The Goal: A functional CRUD (Create, Read, Update, Delete) application.
-
-Tasks:
-
--Build the input field for "New Quests." ✅
-
--Implement the list display using JavaScript arrays. ✅
-
--Add a "Strike-through" function for basic completion. ✅
-
+"One does not simply finish a task; one completes a quest."
 ![screenshot of progress](<images/Screenshot 2026-03-22 at 8.51.51 PM.png>)
 
-🕯️ Stage 2: The Alchemist’s Workshop (Visual Polish)
-The Goal: Moving from "Default Browser" to "Retro Fantasy."
+Overview
+Most to-do apps feel like work. The Quest Log is designed to feel like an adventure. It is a functional Study Companion that lives in your browser — built with vanilla HTML, CSS, and JavaScript, and styled with a retro fantasy aesthetic featuring pixel-art fonts, a parchment scroll UI, and an atmospheric forest environment.
 
-Tasks:
+Features
+✅ Currently Implemented (Stage 1 — The Foundations)
 
--Import pixel-art fonts and a "parchment/scroll" background. ✅
+Add Quests — Enter a new task via the input field and add it to the scroll
+Delete Quests — Remove completed or unwanted quests from the list
+Dynamic List Rendering — Tasks are managed and displayed using JavaScript arrays
+Particle Effects — Ambient environmental particles add atmosphere to the scene
+Retro Fantasy UI — Pixel-art fonts, parchment/scroll background, and a forest environment backdrop
 
--The Burning Effect: Replace the strike-through with a custom CSS animation where text glows red and dissolves.
-   checkbox checked
-  → save deletion to localStorage
-  → hide edit/delete buttons
-  → split text into character spans
-  → for each span, apply burn animation with increasing delay
-  → when last span finishes → remove li from DOM
+🔄 Planned (Stage 2 — The Alchemist's Workshop)
 
--Integrate a custom "Quill" cursor that interacts with the UI.
+The Burning Effect — A custom CSS animation where completed quest text glows red and dissolves character by character, replacing the standard strike-through
+Custom Quill Cursor — A themed cursor that interacts with the UI
+Quill Movement Animation — The quill animates when new quests are added
 
--Add Quill movement when new tasts are added.
+🗺️ Planned (Stage 3 — The Open Road)
 
-🧭 Stage 3: The Open Road (Environment & Motion)
-The Goal: Adding atmosphere and "Game Feel."
+Environment & Motion — Additional atmospheric effects and game-feel enhancements
 
-Tasks:
 
--Create a first-person "Walking Path" background.
+Tech Stack
+TechnologyUsageHTMLApp structure and layoutCSSStyling, animations, fantasy themeJavaScriptCRUD logic, DOM manipulation, array management
 
--Implement a Toggle Switch (On/Off) for background movement to allow for a "Focus Mode."
+Project Structure
+quest-log/
+├── index.html        # Main app structure
+├── style.css         # Fantasy theme, layout, animations
+├── script.js         # Task logic and DOM interactions
+└── images/
+    ├── background/   # Forest environment image
+    └── scroll/       # Scroll image
 
--Add parallax scrolling to give the path depth.
+Setup & Usage
+No dependencies or build tools required.
 
-🌑 Stage 4: The Eternal Cycle (Real-Time Integration)
-The Goal: Making the app feel alive and connected to the real world.
+Clone the repository:
 
-Tasks:
+bash   git clone https://github.com/daphneblum/quest-log.git
 
--Use the JavaScript Date object to detect the user's local time.
+Navigate into the project folder:
 
--Dynamic Lighting: Shift the UI from Day (Golden/Bright) to Dusk (Purple/Orange) to Night (Deep Blue/Lantern Light).
+bash   cd quest-log
 
--Add "Easter Eggs" based on the time (e.g., a small owl appearing at night).
+Open index.html in your browser:
 
-🧪 Tech Stack
-Frontend: HTML5, CSS
+bash   open index.html
+Or simply double-click index.html in your file explorer.
 
-Logic: JavaScript
+How It Works
+Adding a Quest
+Type your task into the input field at the top of the scroll and press the + button (or hit Enter). The task is pushed into a JavaScript array and rendered as a new list item on the scroll.
+Deleting a Quest
+Each quest has a delete control on the right side. Clicking it removes the item from the array and updates the DOM.
+Particle Effects
+Ambient particles are generated and animated via CSS/JavaScript to float across the forest scene, adding environmental depth without impacting app performance.
+
+Development Log
+DateUpdateStage 1 CompleteCore CRUD functionality, pixel-art UI, particle effects, and forest environment implementedStage 2Burn animation, quill cursor — in progressStage 3Environment motion — planned
+
+Acknowledgements
+Base to-do list structure adapted from the tutorial by CSSnippets on YouTube.
+![https://www.youtube.com/watch?v=gRkaen6MeQc]
+All fantasy theming, visual design, and feature extensions by daphneblum.
