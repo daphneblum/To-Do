@@ -42,9 +42,123 @@ document.addEventListener('DOMContentLoaded', () => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         tasks.forEach(task => addTask(task.text, task.completed, false));
         updateProgress();
+    };
+
+    const fireColors = [
+        'rgba(255, 240, 100, alpha)',
+        'rgba(255, 180, 20, alpha)',
+        'rgba(255, 100, 10, alpha)',
+        'rgba(220, 40, 0, alpha)',
+        'rgba(180, 20, 0, alpha)',
+
+    ];
+
+    const createFireCanvas = (x, y, w, h) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = w + 40;
+        canvas.height = h + 120;
+        canvas.style.cssText = `
+            position: fixed;
+            left: ${x - 20}px;
+            top: ${y - 100}px;
+            pointer-events: none;
+            z-index: 9999;
+        `;
+        document.body.appendChild(canvas);
+        return canvas;
+    };
+
+    const spawnParticles = (canvas, count) => {
+        const ctx = canvas.getContext('2d');
+        const cw = canvas.width, ch = canvas.height;
+        const offsetY = ch - 20;
+        let particles = [];
+
+        for(let i = 0; i < count; i++) {
+            particles.push ({
+                x: Math.random() * cw,
+                y: offsetY + Math.random() * 10,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: -(Math.random() * 3 +2),
+                size: Math.random() * 6 + 2,
+                alpha: 1,
+                decay: Math.random() * 0.025 + 0.015,
+                color: fireColors[Math.floor(Math.random() * fireColors.length)],
+                wobble: Math.random() * 0.2 - 0.1,
+            });
+        }
+        
+        let animId;
+        const animate = () => {
+            ctx.clearRect(0, 0, cw, ch);
+            particles.forEach(p => {
+                p.x += p.vx + p.wobble;
+                p.y += p.vy;
+                p.vy *= 0.98; // gravity
+                p.alpha -= p.decay;
+                p.size *= 0.97; // shrink
+
+                if(p.alpha <= 0) return;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color.replace('alpha', Math.max(0, p.alpha));
+                ctx.fill();
+            });
+
+            particles = particles.filter(p => p.alpha > 0);
+            if(particles.length > 0) {
+                animId = requestAnimationFrame(animate);
+            } else {
+                canvas.remove();
+            }
+        };
+        animate();
+    };
+
+    const burnTask = (li) => {
+        const span = li.querySelector('span');
+        const text = span.textContent;
+
+        span.innerHTML = text.split('').map(ch =>
+            `<span class="burn-letter">${ch === ' ' ? '&nbsp;' : ch}</span>`
+        ).join('');
+
+        const letters = span.querySelectorAll('.burn-letter');
+        const totalDuration = 400 + letters.length * 40;
+
+        letters.forEach((letter, i) => {
+            const delay = i * 40;
+
+            setTimeout(() => {
+                letter.style.transition = 'color 0.3s, text-shadow 0.3s, opacity 0.6s, transform 0.8s';
+                letter.style.color = 'rgba(255, 200, 30, 1)';
+                letter.style.textShadow = `
+                    0 0 8px rgba(255, 80, 20, 1),
+                    0 0 20px rgba(220, 30, 0, 0.9),
+                    0 0 40px rgba(180, 10, 0, 0.7),
+                    0 0 60px rgba(140, 0, 0, 0.5)
+            `;
+
+            // Phase 2: letter fades out upward
+            setTimeout(() => {
+                letter.style.color = 'rgba(255, 80, 0, 0)';
+                letter.style.opacity = '0';
+                letter.style.transform = `translateY(-${10 + Math.random() * 15}px) rotate(${(Math.random() - 0.5) * 15}deg)`;
+                letter.style.textShadow = 'none';
+                letter.style.filter = 'blur(4px)';
+            }, 250);
+
+            }, delay);
+        });
+
+        setTimeout(() => {
+            li.remove();
+            updateEmptyState();
+            updateProgress();
+            saveTasks();
+        }, totalDuration);
     }
-
-
     const addTask = (text, completed = false, checkCompletion = true) => { 
         const taskText = text || taskInput.value.trim();
         if(!taskText) {
@@ -52,17 +166,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const li = document.createElement('li');
+        li.dataset.text = taskText;
         li.innerHTML = `
         <input type="checkbox" class="checkbox" ${completed ? 'checked' : ''} />
         <span>${taskText}</span>
         <div class="task-buttons">
             <button class="edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="delete-button"><i class="fa-solid fa-trash"></i></button>
         </div>
         `;
 
         const checkbox = li.querySelector('.checkbox');
         const editButton = li.querySelector('.edit-button');
+        const textSpan = li.querySelector('span');
 
         if (completed) {
             li.classList.add('completed');
@@ -91,12 +206,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        li.querySelector('.delete-button').
-        addEventListener('click', () => {
-            li.remove();
-            updateEmptyState();
-            updateProgress();
-            saveTasks();
+        // li.querySelector('.delete-button').
+        // addEventListener('click', () => {
+        //     li.remove();
+        //     updateEmptyState();
+        //     updateProgress();
+        //     saveTasks();
+        // });
+
+        textSpan.addEventListener('click', () => {
+            if(!li.classList.contains('burning')) {
+                li.classList.add('burning');
+                burnTask(li);
+            }
         });
 
 

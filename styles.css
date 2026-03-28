@@ -338,6 +338,15 @@ h1 {
   animation: floatUp linear infinite;
 }
 
+.burn-letter {
+    display: inline-block;
+    cursor: pointer;
+}
+
+span {
+    cursor: pointer;
+}
+
 @keyframes floatUp {
   0% {
     transform: translateY(0) translateX(0) scale(1);
