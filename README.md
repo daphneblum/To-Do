@@ -17,10 +17,10 @@ Delete Quests — Remove completed or unwanted quests from the list
 Dynamic List Rendering — Tasks are managed and displayed using JavaScript arrays
 Particle Effects — Ambient environmental particles add atmosphere to the scene
 Retro Fantasy UI — Pixel-art fonts, parchment/scroll background, and a forest environment backdrop
+The Burning Effect — A custom CSS animation where completed quest text glows red and dissolves character by character, replacing the standard delete
 
 🔄 Planned (Stage 2 — The Alchemist's Workshop)
 
-The Burning Effect — A custom CSS animation where completed quest text glows red and dissolves character by character, replacing the standard strike-through
 Custom Quill Cursor — A themed cursor that interacts with the UI
 Quill Movement Animation — The quill animates when new quests are added
 

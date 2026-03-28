@@ -44,82 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     };
 
-    const fireColors = [
-        'rgba(255, 240, 100, alpha)',
-        'rgba(255, 180, 20, alpha)',
-        'rgba(255, 100, 10, alpha)',
-        'rgba(220, 40, 0, alpha)',
-        'rgba(180, 20, 0, alpha)',
-
-    ];
-
-    const createFireCanvas = (x, y, w, h) => {
-        const canvas = document.createElement('canvas');
-        canvas.width = w + 40;
-        canvas.height = h + 120;
-        canvas.style.cssText = `
-            position: fixed;
-            left: ${x - 20}px;
-            top: ${y - 100}px;
-            pointer-events: none;
-            z-index: 9999;
-        `;
-        document.body.appendChild(canvas);
-        return canvas;
-    };
-
-    const spawnParticles = (canvas, count) => {
-        const ctx = canvas.getContext('2d');
-        const cw = canvas.width, ch = canvas.height;
-        const offsetY = ch - 20;
-        let particles = [];
-
-        for(let i = 0; i < count; i++) {
-            particles.push ({
-                x: Math.random() * cw,
-                y: offsetY + Math.random() * 10,
-                vx: (Math.random() - 0.5) * 1.5,
-                vy: -(Math.random() * 3 +2),
-                size: Math.random() * 6 + 2,
-                alpha: 1,
-                decay: Math.random() * 0.025 + 0.015,
-                color: fireColors[Math.floor(Math.random() * fireColors.length)],
-                wobble: Math.random() * 0.2 - 0.1,
-            });
-        }
-        
-        let animId;
-        const animate = () => {
-            ctx.clearRect(0, 0, cw, ch);
-            particles.forEach(p => {
-                p.x += p.vx + p.wobble;
-                p.y += p.vy;
-                p.vy *= 0.98; // gravity
-                p.alpha -= p.decay;
-                p.size *= 0.97; // shrink
-
-                if(p.alpha <= 0) return;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color.replace('alpha', Math.max(0, p.alpha));
-                ctx.fill();
-            });
-
-            particles = particles.filter(p => p.alpha > 0);
-            if(particles.length > 0) {
-                animId = requestAnimationFrame(animate);
-            } else {
-                canvas.remove();
-            }
-        };
-        animate();
-    };
 
     const burnTask = (li) => {
         const span = li.querySelector('span');
         const text = span.textContent;
-
+        
         span.innerHTML = text.split('').map(ch =>
             `<span class="burn-letter">${ch === ' ' ? '&nbsp;' : ch}</span>`
         ).join('');
